@@ -1,0 +1,24 @@
+{
+  "name": "vue-tranning",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,vue,html,md,json}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,vue,html,md,json}\""
+  },
+  "dependencies": {
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "eslint": "^9.22.0",
+    "eslint-plugin-vue": "^10.0.0",
+    "prettier": "^3.5.3",
+    "vite": "^6.2.0"
+  }
+}
