@@ -3,7 +3,8 @@ import { ref, onMounted } from 'vue'
 
 interface Todo {
     id: number
-    text: string
+    title: string
+    completed: boolean
 }
 
 

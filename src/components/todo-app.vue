@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
   import TodoInput from './todo-input.vue'
   import TodoItem from './todo-item.vue'
   import { useLocalStorage } from '../utils/useLocalStorage' // Импортируем хук
+  import { onMounted } from 'vue'
 
   const { data: todos, saveData } = useLocalStorage('todos')
 
@@ -10,12 +10,25 @@
     if (text.trim() !== '') {
       const newTodo = {
         id: Date.now(),
-        text: text,
+        title: text,
+        completed: false,
       }
       const updatedTodos = [...todos.value, newTodo]
       saveData(updatedTodos)
     }
   }
+
+  onMounted(async () => {
+    if (todos.value.length === 0) {
+      try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
+        const data = await response.json()
+        saveData(data.map((todo) => ({ ...todo, completed: false })))
+      } catch (e) {
+        console.log(e)
+      }
+    }
+  })
 
   const handleDelete = (id: number) => {
     const updatedTodos = todos.value.filter((todo) => todo.id !== id)
@@ -31,6 +44,13 @@
       saveData(updatedTodos)
     }
   }
+
+  const handleCheked = (id: number) => {
+    const updatedTodos = todos.value.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+    )
+    saveData(updatedTodos)
+  }
 </script>
 
 <template>
@@ -39,10 +59,11 @@
     <transition-group name="fade" tag="div">
       <TodoItem
         @delete="handleDelete"
+        @edit="handleEdit"
+        @check="handleCheked"
         v-for="todo in todos"
         :key="todo.id"
         :todo="todo"
-        @edit="handleEdit"
       />
     </transition-group>
   </div>

@@ -2,13 +2,14 @@
   interface TodoItemProps {
     todo: {
       id: number
-      text: string
+      title: string
+      completed: boolean
     }
   }
 
   const props = defineProps<TodoItemProps>()
 
-  const emit = defineEmits(['edit', 'delete'])
+  const emit = defineEmits(['edit', 'delete', 'check'])
 
   const handleEdit = () => {
     emit('edit', props.todo.id)
@@ -17,11 +18,21 @@
   const handleDelete = () => {
     emit('delete', props.todo.id)
   }
+
+  const handleCheked = () => {
+    emit('check', props.todo.id)
+  }
+  //
 </script>
 
 <template>
   <div class="todo__list">
-    <p class="todo__list-text">{{ todo.text }}</p>
+    <div class="todo__list-status">
+      <input @change="handleCheked" type="checkbox" :checked="todo.completed" />
+      <p :class="todo.completed ? 'todo__list-text-completed' : 'todo__list-text'">
+        {{ todo.title }}
+      </p>
+    </div>
     <div class="todo__list-buttons">
       <button class="todo__list-button todo__list-button--update" @click.stop="handleEdit">
         Изменить
@@ -61,7 +72,6 @@
   .todo__list-text {
     font-size: 18px;
     font-weight: 500;
-    padding-left: 10px;
   }
 
   .todo__list-button {
@@ -78,5 +88,18 @@
 
   .todo__list-button--delete {
     background-color: #ca2525;
+  }
+
+  .todo__list-text-completed {
+    text-decoration: line-through;
+    font-size: 18px;
+    font-weight: 500;
+    color: green;
+  }
+
+  .todo__list-status {
+    display: flex;
+    text-align: center;
+    gap: 10px;
   }
 </style>
