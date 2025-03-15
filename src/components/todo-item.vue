@@ -35,29 +35,43 @@
 
 <style scoped>
   .todo__list {
-    border-top: 1px solid #ccc;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-top: 20px;
+    position: relative;
+  }
+
+  .todo__list:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    top: 87px;
+    opacity: 0.6;
+    width: 100%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: gray;
   }
 
   .todo__list-buttons {
     display: flex;
-    gap: 10px;
+    gap: 5px;
   }
   .todo__list-text {
     font-size: 18px;
     font-weight: 500;
+    padding-left: 10px;
   }
 
   .todo__list-button {
-    padding: 6px 6px;
+    padding: 8px 8px;
     font-size: 13px;
     color: #fff;
     background-color: #007bff;
+    border-radius: 10px;
     border: none;
-    border-radius: 4px;
+
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
   }

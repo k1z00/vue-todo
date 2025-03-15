@@ -37,7 +37,7 @@
     padding: 10px 12px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 15px;
     outline: none;
     transition: border-color 0.2s ease-in-out;
   }
@@ -52,7 +52,7 @@
     color: #fff;
     background-color: #007bff;
     border: none;
-    border-radius: 4px;
+    border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
   }
