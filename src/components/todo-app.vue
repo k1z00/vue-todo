@@ -39,7 +39,7 @@
     const newText = prompt('Введите новый текст')
     if (newText) {
       const updatedTodos = todos.value.map((todo) =>
-        todo.id === id ? { ...todo, text: newText } : todo,
+        todo.id === id ? { ...todo, title: newText } : todo,
       )
       saveData(updatedTodos)
     }
@@ -74,7 +74,7 @@
     width: 100%;
     max-width: 1000px;
     margin: auto;
-    margin-top: 200px;
+    margin-top: 150px;
     padding: 20px;
     background-color: #ecebeb;
     border-radius: 8px;

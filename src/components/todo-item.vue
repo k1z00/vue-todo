@@ -22,7 +22,6 @@
   const handleCheked = () => {
     emit('check', props.todo.id)
   }
-  //
 </script>
 
 <template>
@@ -35,10 +34,10 @@
     </div>
     <div class="todo__list-buttons">
       <button class="todo__list-button todo__list-button--update" @click.stop="handleEdit">
-        Изменить
+        <img width="17px" height="17px" src="/update.png" alt="" />
       </button>
       <button class="todo__list-button todo__list-button--delete" @click="handleDelete">
-        Удалить
+        <img width="30px" height="30px" src="/delete.png" alt="" />
       </button>
     </div>
   </div>
@@ -69,25 +68,21 @@
     display: flex;
     gap: 5px;
   }
+
   .todo__list-text {
     font-size: 18px;
     font-weight: 500;
   }
 
   .todo__list-button {
-    padding: 8px 8px;
+    padding: 6px 6px;
     font-size: 13px;
     color: #fff;
-    background-color: #007bff;
     border-radius: 10px;
     border: none;
-
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
-  }
-
-  .todo__list-button--delete {
-    background-color: #ca2525;
+    background-color: #ecebeb;
   }
 
   .todo__list-text-completed {
